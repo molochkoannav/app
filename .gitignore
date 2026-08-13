@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# База данных
+db.sqlite3
+db.sqlite3-journal
+
 # Distribution / packaging
 .Python
 build/
