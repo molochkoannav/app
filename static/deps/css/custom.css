@@ -81,6 +81,8 @@ body {
     z-index: 999;
     overflow-y: auto;
     border-right: 1px solid #ede9ee9c;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar.open {
@@ -102,6 +104,7 @@ body {
 .sidebar-menu {
     list-style: none;
     padding: 0;
+    flex: 1;
 }
 
 .sidebar-menu li {
@@ -136,8 +139,192 @@ body {
     flex-shrink: 0;
 }
 
+/* ===== БЛОК ПОЛЬЗОВАТЕЛЯ В САЙДБАРЕ ===== */
+.sidebar-user {
+    padding: 15px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin-top: auto;
+    margin-bottom: 1rem;
+}
+
+/* Гость (неавторизованный) */
+.user-guest {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+}
+
+.guest-link {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+.guest-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.guest-separator {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 14px;
+}
+
+/* Авторизованный пользователь */
+.user-dropdown {
+    position: relative;
+}
+
+.user-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 10px 14px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+}
+
+.user-dropdown-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+.user-dropdown-toggle:active {
+    transform: scale(0.97);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.user-avatar svg {
+    width: 18px;
+    height: 18px;
+    fill: white;
+}
+
+.user-name {
+    flex: 1;
+    text-align: left;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white;
+}
+
+.dropdown-arrow {
+    font-size: 10px;
+    transition: transform 0.3s ease;
+    opacity: 0.6;
+    color: white;
+}
+
+.user-dropdown-toggle.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Выпадающее меню пользователя (всплывает вверх) */
+.user-dropdown-menu {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    background: #2d1f4e;
+    border-radius: 12px;
+    padding: 8px 0;
+    list-style: none;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.5), 0 8px 20px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    min-width: 180px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.user-dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.user-dropdown-menu li {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+}
+
+.user-dropdown-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 0;
+}
+
+.user-dropdown-menu li a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
+.user-dropdown-menu li a svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.6;
+    fill: currentColor;
+}
+
+.user-dropdown-menu li a.text-danger {
+    color: #ff7a7a !important;
+}
+
+.user-dropdown-menu li a.text-danger:hover {
+    background: rgba(255, 100, 100, 0.12);
+    color: #ff4444 !important;
+}
+
+.user-dropdown-menu li a.text-danger svg {
+    opacity: 0.8;
+}
+
+.dropdown-divider {
+    height: 1px;
+    margin: 6px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+}
+
 .sidebar-footer {
-    margin-top: 2.5rem;
+    margin-top: 0.5rem;
     padding-top: 1.2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     font-size: 0.85rem;
@@ -170,14 +357,13 @@ body {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.486); /* Полупрозрачный белый фон */
+    background-color: rgba(255, 255, 255, 0.486);
     border-radius: 2rem;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), 0 8px 20px rgba(0, 0, 0, 0.03);
     padding: 3rem 2rem;
     transition: transform 0.3s ease;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-
 }
 
 .page.shifted {
@@ -342,6 +528,7 @@ body {
     .sidebar {
         width: 280px;
         left: -300px;
+        padding: 1.5rem 1rem;
     }
 
     .menu-toggle {
@@ -354,6 +541,12 @@ body {
         width: 20px;
         height: 2px;
     }
+
+    .user-dropdown-menu {
+        left: -10px;
+        right: -10px;
+        min-width: unset;
+    }
 }
 
 @media (max-width: 400px) {
@@ -364,5 +557,58 @@ body {
     .sidebar {
         width: 260px;
         left: -280px;
+        padding: 1.2rem 0.8rem;
     }
+
+    .sidebar-title {
+        font-size: 1.2rem;
+    }
+
+    .sidebar-menu li {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.4rem;
+    }
+
+    .user-dropdown-toggle {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .user-name {
+        font-size: 13px;
+    }
+}
+
+/* ===== ДОПОЛНИТЕЛЬНО: АНИМАЦИЯ ДЛЯ ПЛАВНОГО ПОЯВЛЕНИЯ ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.user-dropdown-menu.show {
+    animation: fadeInUp 0.25s ease forwards;
+}
+
+/* ===== СКРОЛЛБАР ДЛЯ САЙДБАРА ===== */
+.sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
