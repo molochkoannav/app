@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Главная — продажа товаров{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    <h1 class="page-title">Главная</h1>
+    <h1 class="page-title">{{ content }}</h1>
     <div class="page-subtitle">Вы находитесь на сайте, предназначенном для продажи товаров.</div>
 
     <div class="product-grid">
