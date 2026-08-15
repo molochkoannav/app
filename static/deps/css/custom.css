@@ -627,3 +627,251 @@ body {
 .sidebar::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
 }
+
+/* ===== СТРАНИЦА КОНТАКТОВ ===== */
+.contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2.5rem;
+    margin: 1.5rem 0 2rem;
+}
+
+.contacts-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 1.2rem 1.5rem;
+    border-radius: 1.2rem;
+    border: 1px solid #eef2f6;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.info-item i {
+    font-size: 1.6rem;
+    color: #280f44;
+    background: rgba(40, 15, 68, 0.1);
+    padding: 0.6rem;
+    border-radius: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.info-item h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #5e4a6e;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.2rem;
+}
+
+.info-item p {
+    font-size: 1rem;
+    color: #29122e;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Форма */
+.contacts-form {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 2rem 2rem 2.2rem;
+    border-radius: 1.5rem;
+    border: 1px solid #eef2f6;
+}
+
+.contacts-form h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #29122e;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5e4a6e;
+    margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #dde4ec;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    background: white;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #280f44;
+    box-shadow: 0 0 0 3px rgba(40, 15, 68, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-send {
+    background: #280f44;
+    color: white;
+    border: none;
+    border-radius: 60px;
+    padding: 0.9rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    letter-spacing: 0.3px;
+}
+
+.btn-send:hover {
+    background: #401a5a;
+    box-shadow: 0 6px 14px rgba(40, 15, 68, 0.25);
+}
+
+.btn-send:active {
+    transform: scale(0.98);
+    background: #1f0a3b;
+}
+
+/* Примечание внизу */
+.contacts-note {
+    margin-top: 2.5rem;
+    padding: 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 1.2rem;
+    border-left: 3px solid #280f44;
+    font-size: 0.95rem;
+    color: #3d2b4a;
+    line-height: 1.7;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 768px) {
+    .contacts-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+    }
+
+    .contacts-form {
+        padding: 1.5rem;
+    }
+
+    .info-item {
+        padding: 1rem 1.2rem;
+    }
+
+    .info-item i {
+        font-size: 1.3rem;
+        padding: 0.5rem;
+    }
+
+    .contacts-note {
+        padding: 1.2rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .info-item i {
+        margin-top: 0;
+    }
+
+    .btn-send {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+.contacts-note {
+    margin-top: 2.5rem;
+    padding: 1.8rem 2rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 1.5rem;
+    border-left: 4px solid #280f44;
+    border-right: 4px solid #280f44;
+    font-size: 0.95rem;
+    color: #3d2b4a;
+    line-height: 1.8;
+    backdrop-filter: blur(3px);
+    transition: transform 0.3s ease;
+}
+
+.contacts-note:hover {
+    transform: scale(1.005);
+}
+
+.contacts-note p {
+    margin-bottom: 0.8rem;
+}
+
+.contacts-note p:last-child {
+    margin-bottom: 0;
+}
+
+.contacts-note strong {
+    color: #280f44;
+}
+
+.contacts-note .highlight {
+    display: inline-block;
+    background: rgba(40, 15, 68, 0.08);
+    padding: 0.1rem 0.6rem;
+    border-radius: 20px;
+    font-weight: 500;
+    color: #280f44;
+}
+
+.contacts-note em {
+    color: #5e4a6e;
+}
+
+.contacts-note .bi-heart-fill {
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 640px) {
+    .contacts-note {
+        padding: 1.2rem 1.2rem;
+        font-size: 0.9rem;
+        border-left-width: 3px;
+        border-right-width: 3px;
+    }
+}

@@ -27,7 +27,7 @@ def contacts(request):
     }
     return render(request, 'contacts.html', context)
 
-@login_required  # ← ТЕПЕРЬ РАБОТАЕТ
+@login_required  # 
 def profile(request):
     """Личный кабинет пользователя"""
     context = {
@@ -44,3 +44,16 @@ def register(request):
 def mens_socks(request):
     """Страница категории 'Носки мужские'"""
     return render(request, 'mens_socks.html')
+
+def womens_socks(request):
+    """Страница категории 'Носки женские'"""
+    return render(request, 'women_socks.html')
+
+def kids_socks(request):
+    """Страница категории 'Носки детские'"""
+    return render(request, 'kids_socks.html')
+
+def wool_socks(request):
+    """Страница категории 'Носки шерстяные'"""
+    return render(request, 'wool_socks.html')
+

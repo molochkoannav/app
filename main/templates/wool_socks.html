@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Носки шерстяные{% endblock %}
+
+{% block content %}
+    <div style="height: 100vh; display: flex; flex-direction: column; overflow: hidden; padding: 10px 20px 20px 20px; box-sizing: border-box;">
+        
+        <h1 class="page-title" style="text-align: center; margin-top: 10px; margin-bottom: 25px; font-size: 2rem;">Шерстяные носки</h1>
+
+        <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1; overflow: hidden;">
+            
+            <!-- Товар 1 -->
+            <div class="product-card">
+                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 10px 0; border-radius: 8px; margin-bottom: 15px; font-size: 1.1rem; width: 100%;">
+                    Меринос
+                </div>
+                <div class="product-price" style="text-align: center; margin-bottom: 15px;">
+                    $ 25
+                </div>
+                <ul class="product-features" style="margin-top: 0; margin-bottom: 20px; padding-left: 0; list-style: none; text-align: center;">
+                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Шерсть мериноса 100%</li>
+                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Очень тёплые</li>
+                </ul>
+                <button type="button" class="btn-buy">
+                    Купить
+                </button>
+            </div>
+
+            <!-- Товар 2 -->
+            <div class="product-card">
+                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 10px 0; border-radius: 8px; margin-bottom: 15px; font-size: 1.1rem; width: 100%;">
+                    Смесовые
+                </div>
+                <div class="product-price" style="text-align: center; margin-bottom: 15px;">
+                    $ 20
+                </div>
+                <ul class="product-features" style="margin-top: 0; margin-bottom: 20px; padding-left: 0; list-style: none; text-align: center;">
+                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Шерсть + акрил</li>
+                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Меньше скатываются</li>
+                </ul>
+                <button type="button" class="btn-buy">
+                    Купить
+                </button>
+            </div>
+
+            <!-- Товар 3 -->
+            <div class="product-card">
+                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 10px 0; border-radius: 8px; margin-bottom: 15px; font-size: 1.1rem; width: 100%;">
+                    Термо
+                </div>
+                <div class="product-price" style="text-align: center; margin-bottom: 15px;">
+                    $ 28
+                </div>
+                <ul class="product-features" style="margin-top: 0; margin-bottom: 20px; padding-left: 0; list-style: none; text-align: center;">
+                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Термошерсть</li>
+                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Для экстремального холода</li>
+                </ul>
+                <button type="button" class="btn-buy">
+                    Купить
+                </button>
+            </div>
+
+            <!-- Товар 4 -->
+            <div class="product-card">
+                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 10px 0; border-radius: 8px; margin-bottom: 15px; font-size: 1.1rem; width: 100%;">
+                    Кашемир
+                </div>
+                <div class="product-price" style="text-align: center; margin-bottom: 15px;">
+                    $ 35
+                </div>
+                <ul class="product-features" style="margin-top: 0; margin-bottom: 20px; padding-left: 0; list-style: none; text-align: center;">
+                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Кашемир + шерсть</li>
+                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Максимальная мягкость</li>
+                </ul>
+                <button type="button" class="btn-buy">
+                    Купить
+                </button>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
