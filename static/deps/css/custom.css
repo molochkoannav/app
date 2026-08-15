@@ -125,12 +125,27 @@ body {
     background: rgba(255, 255, 255, 0.15);
     color: #ffffff;
 }
-
-.sidebar-menu li.active {
-    background: rgba(255, 255, 255, 0.2);
+/* ===== ПУНКТЫ МЕНЮ С ИКОНКАМИ ===== */
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
     color: #ffffff;
-    font-weight: 600;
+    text-decoration: none;
+    width: 100%;
+    padding: 0rem 0rem;
+    border-radius: 10px;
+    transition: background 0s ease, color 0s ease;
+    font-weight: 500;
+    font-size: 1rem;
 }
+
+.sidebar-menu li a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+
 
 .sidebar-menu svg {
     width: 20px;

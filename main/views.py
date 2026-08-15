@@ -7,6 +7,7 @@ def index(request) -> HttpResponse:
     return render(request, 'index.html', context)
 
 def catalog(request) -> HttpResponse:
+    """Страница каталога"""
     context = {"title": "Каталог", "content": "Каталог товаров"}
     return render(request, 'catalog.html', context)
 
@@ -39,3 +40,7 @@ def register(request):
     """Регистрация пользователя"""
     # Здесь будет логика регистрации
     return render(request, 'register.html')
+
+def mens_socks(request):
+    """Страница категории 'Носки мужские'"""
+    return render(request, 'mens_socks.html')
