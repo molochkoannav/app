@@ -4,64 +4,63 @@
 {% block title %}Каталог товаров{% endblock %}
 
 {% block content %}
-    <!-- Ограничиваем высоту страницы 100% экрана, чтобы убрать скролл -->
-    <div style="height: 100vh; display: flex; flex-direction: column; overflow: hidden; padding: 10px 20px 20px 20px; box-sizing: border-box;">
+    <div style="height: 100vh; display: flex; flex-direction: column; overflow: hidden; padding: 10px 20px 15px 20px; box-sizing: border-box;">
         
-        <h1 class="page-title" style="text-align: center; margin-top: 10px; margin-bottom: 15px;">Каталог</h1>
+        <h1 class="page-title" style="text-align: center; margin-top: 3px; margin-bottom: 10px; font-size: 1.3rem;">Каталог</h1>
 
-        <!-- Сетка: flex или grid, чтобы заполнить оставшееся пространство -->
-        <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; flex-grow: 1; overflow: hidden;">
+        <!-- Сетка: 2 колонки -->
+        <div class="product-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; flex: 1; min-height: 0;">
             
             <!-- Товар 1: Носки мужские -->
-            <div class="product-card" style="border: 1px solid #f0f0f0; border-radius: 20px; padding: 20px; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; height: 100%; box-sizing: border-box;">
+            <div class="product-card" style="border: 1px solid #e0e0e0; border-radius: 10px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center; padding: 12px; min-height: 0; height: 100%;">
                 
-                <div style="width: 100%; overflow: hidden; border-radius: 12px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; background: #f9f9f9; flex-grow: 1;">
-                    <img src="{% static 'deps/images/man_soks.jpeg' %}" alt="Носки мужские" style="width: 100%; height: auto; max-height: 100%; object-fit: contain; display: block;">
+                <div style="width: 100%; overflow: hidden; border-radius: 6px; margin-bottom: 8px; background: #f9f9f9; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'deps/images/man_soks.jpeg' %}" alt="Носки мужские" style="width: 100%; height: 100%; object-fit: contain; display: block;">
                 </div>
 
-                <h2 class="product-name" style="font-size: 1.1rem; font-weight: 600; margin: 0 0 15px 0; text-align: center; flex-shrink: 0;">Носки мужские</h2>
+                <h2 class="product-name" style="font-size: 0.85rem; font-weight: 600; margin: 0 0 6px 0; text-align: center; flex-shrink: 0;">Носки мужские</h2>
 
-                <button type="button" class="btn-buy catalog-btn" data-url="/catalog/mens/" style="width: 100%; padding: 12px; background-color: #2b1b40; color: white; border: none; border-radius: 30px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s; margin-top: auto; flex-shrink: 0;">
-                    Просмотреть категорию
+                <button type="button" class="btn-buy catalog-btn" data-url="/catalog/mens/" style="width: 100%; padding: 7px; background-color: #2b1b40; color: white; border: none; border-radius: 20px; font-weight: 500; font-size: 0.75rem; cursor: pointer; transition: background 0.2s; flex-shrink: 0;">
+                    Просмотреть
                 </button>
             </div>
 
             <!-- Товар 2: Носки женские -->
-            <div class="product-card" style="border: 1px solid #f0f0f0; border-radius: 20px; padding: 20px; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; height: 100%; box-sizing: border-box;">
-                <div style="width: 100%; overflow: hidden; border-radius: 12px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; background: #f9f9f9; flex-grow: 1;">
-                    <img src="{% static 'deps/images/woman_soks.jpeg' %}" alt="Носки женские" style="width: 100%; height: auto; max-height: 100%; object-fit: contain; display: block;">
+            <div class="product-card" style="border: 1px solid #e0e0e0; border-radius: 10px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center; padding: 12px; min-height: 0; height: 100%;">
+                <div style="width: 100%; overflow: hidden; border-radius: 6px; margin-bottom: 8px; background: #f9f9f9; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'deps/images/woman_soks.jpeg' %}" alt="Носки женские" style="width: 100%; height: 100%; object-fit: contain; display: block;">
                 </div>
 
-                <h2 class="product-name" style="font-size: 1.1rem; font-weight: 600; margin: 0 0 15px 0; text-align: center; flex-shrink: 0;">Носки женские</h2>
+                <h2 class="product-name" style="font-size: 0.85rem; font-weight: 600; margin: 0 0 6px 0; text-align: center; flex-shrink: 0;">Носки женские</h2>
 
-                <button type="button" class="btn-buy catalog-btn" data-url="/catalog/womens/" style="width: 100%; padding: 12px; background-color: #2b1b40; color: white; border: none; border-radius: 30px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s; margin-top: auto; flex-shrink: 0;">
-                    Просмотреть категорию
+                <button type="button" class="btn-buy catalog-btn" data-url="/catalog/womens/" style="width: 100%; padding: 7px; background-color: #2b1b40; color: white; border: none; border-radius: 20px; font-weight: 500; font-size: 0.75rem; cursor: pointer; transition: background 0.2s; flex-shrink: 0;">
+                    Просмотреть
                 </button>
             </div>
 
             <!-- Товар 3: Носки детские -->
-            <div class="product-card" style="border: 1px solid #f0f0f0; border-radius: 20px; padding: 20px; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; height: 100%; box-sizing: border-box;">
-                <div style="width: 100%; overflow: hidden; border-radius: 12px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; background: #f9f9f9; flex-grow: 1;">
-                    <img src="{% static 'deps/images/child_soks.jpeg' %}" alt="Носки детские" style="width: 100%; height: auto; max-height: 100%; object-fit: contain; display: block;">
+            <div class="product-card" style="border: 1px solid #e0e0e0; border-radius: 10px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center; padding: 12px; min-height: 0; height: 100%;">
+                <div style="width: 100%; overflow: hidden; border-radius: 6px; margin-bottom: 8px; background: #f9f9f9; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'deps/images/child_soks.jpeg' %}" alt="Носки детские" style="width: 100%; height: 100%; object-fit: contain; display: block;">
                 </div>
 
-                <h2 class="product-name" style="font-size: 1.1rem; font-weight: 600; margin: 0 0 15px 0; text-align: center; flex-shrink: 0;">Носки детские</h2>
+                <h2 class="product-name" style="font-size: 0.85rem; font-weight: 600; margin: 0 0 6px 0; text-align: center; flex-shrink: 0;">Носки детские</h2>
 
-                <button type="button" class="btn-buy catalog-btn" data-url="/catalog/kids/" style="width: 100%; padding: 12px; background-color: #2b1b40; color: white; border: none; border-radius: 30px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s; margin-top: auto; flex-shrink: 0;">
-                    Просмотреть категорию
+                <button type="button" class="btn-buy catalog-btn" data-url="/catalog/kids/" style="width: 100%; padding: 7px; background-color: #2b1b40; color: white; border: none; border-radius: 20px; font-weight: 500; font-size: 0.75rem; cursor: pointer; transition: background 0.2s; flex-shrink: 0;">
+                    Просмотреть
                 </button>
             </div>
 
             <!-- Товар 4: Носки шерстяные -->
-            <div class="product-card" style="border: 1px solid #f0f0f0; border-radius: 20px; padding: 20px; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; height: 100%; box-sizing: border-box;">
-                <div style="width: 100%; overflow: hidden; border-radius: 12px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; background: #f9f9f9; flex-grow: 1;">
-                    <img src="{% static 'deps/images/wool_soks.jpeg' %}" alt="Носки шерстяные" style="width: 100%; height: auto; max-height: 100%; object-fit: contain; display: block;">
+            <div class="product-card" style="border: 1px solid #e0e0e0; border-radius: 10px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center; padding: 12px; min-height: 0; height: 100%;">
+                <div style="width: 100%; overflow: hidden; border-radius: 6px; margin-bottom: 8px; background: #f9f9f9; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'deps/images/wool_soks.jpeg' %}" alt="Носки шерстяные" style="width: 100%; height: 100%; object-fit: contain; display: block;">
                 </div>
 
-                <h2 class="product-name" style="font-size: 1.1rem; font-weight: 600; margin: 0 0 15px 0; text-align: center; flex-shrink: 0;">Носки шерстяные</h2>
+                <h2 class="product-name" style="font-size: 0.85rem; font-weight: 600; margin: 0 0 6px 0; text-align: center; flex-shrink: 0;">Носки шерстяные</h2>
 
-                <button type="button" class="btn-buy catalog-btn" data-url="/catalog/wool/" style="width: 100%; padding: 12px; background-color: #2b1b40; color: white; border: none; border-radius: 30px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s; margin-top: auto; flex-shrink: 0;">
-                    Просмотреть категорию
+                <button type="button" class="btn-buy catalog-btn" data-url="/catalog/wool/" style="width: 100%; padding: 7px; background-color: #2b1b40; color: white; border: none; border-radius: 20px; font-weight: 500; font-size: 0.75rem; cursor: pointer; transition: background 0.2s; flex-shrink: 0;">
+                    Просмотреть
                 </button>
             </div>
             

@@ -1,80 +1,113 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Носки мужские{% endblock %}
+{% block title %}Носки женские{% endblock %}
 
 {% block content %}
     <div style="height: 100vh; display: flex; flex-direction: column; overflow: hidden; padding: 10px 20px 20px 20px; box-sizing: border-box;">
         
-        <h1 class="page-title" style="text-align: center; margin-top: 10px; margin-bottom: 25px; font-size: 2rem;">Женские носки</h1>
+        <h1 class="page-title" style="text-align: center; margin-top: 10px; margin-bottom: 20px; font-size: 1.8rem;">Женские носки</h1>
 
-        <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1; overflow: hidden;">
+        <div class="product-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; flex: 1; min-height: 0;">
             
             <!-- Товар 1: Классические -->
-            <div class="product-card">
-                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 10px 0; border-radius: 8px; margin-bottom: 15px; font-size: 1.1rem; width: 100%;">
+            <div class="product-card" style="border: 1px solid #e0e0e0; border-radius: 10px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center; padding: 15px; min-height: 0; height: 100%;">
+                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 8px 0; border-radius: 6px; margin-bottom: 10px; font-size: 0.95rem; width: 100%; font-weight: 600;">
                     Классические
                 </div>
-                <div class="product-price" style="text-align: center; margin-bottom: 15px;">
+                <div class="product-price" style="text-align: center; margin-bottom: 10px; font-size: 1.1rem; font-weight: 700; color: #2b1b40;">
                     $ 15
                 </div>
-                <ul class="product-features" style="margin-top: 0; margin-bottom: 20px; padding-left: 0; list-style: none; text-align: center;">
-                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Хлопок 95%, эластан 5%</li>
-                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Размеры: 39-42, 43-46</li>
+                <ul class="product-features" style="margin-top: 0; margin-bottom: 12px; padding-left: 0; list-style: none; text-align: center; flex: 1;">
+                    <li style="justify-content: center; border-bottom: none; padding: 3px 0; font-size: 0.85rem;">Хлопок 95%, эластан 5%</li>
+                    <li style="justify-content: center; border-bottom: none; padding: 3px 0; font-size: 0.85rem;">Размеры: 39-42, 43-46</li>
                 </ul>
-                <!-- Здесь только btn-buy, без catalog-btn. По вашему JS это добавит в корзину -->
-                <button type="button" class="btn-buy">
+                <button type="button" class="btn-buy" style="width: 100%; padding: 8px; background-color: #2b1b40; color: white; border: none; border-radius: 20px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; flex-shrink: 0;">
                     Купить
                 </button>
             </div>
 
             <!-- Товар 2: Капроновые -->
-            <div class="product-card">
-                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 10px 0; border-radius: 8px; margin-bottom: 15px; font-size: 1.1rem; width: 100%;">
+            <div class="product-card" style="border: 1px solid #e0e0e0; border-radius: 10px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center; padding: 15px; min-height: 0; height: 100%;">
+                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 8px 0; border-radius: 6px; margin-bottom: 10px; font-size: 0.95rem; width: 100%; font-weight: 600;">
                     Капроновые
                 </div>
-                <div class="product-price" style="text-align: center; margin-bottom: 15px;">
+                <div class="product-price" style="text-align: center; margin-bottom: 10px; font-size: 1.1rem; font-weight: 700; color: #2b1b40;">
                     $ 18
                 </div>
-                <ul class="product-features" style="margin-top: 0; margin-bottom: 20px; padding-left: 0; list-style: none; text-align: center;">
-                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Сеточкой</li>
-                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Дышащая структура</li>
+                <ul class="product-features" style="margin-top: 0; margin-bottom: 12px; padding-left: 0; list-style: none; text-align: center; flex: 1;">
+                    <li style="justify-content: center; border-bottom: none; padding: 3px 0; font-size: 0.85rem;">Сеточкой</li>
+                    <li style="justify-content: center; border-bottom: none; padding: 3px 0; font-size: 0.85rem;">Дышащая структура</li>
                 </ul>
-                <button type="button" class="btn-buy">
+                <button type="button" class="btn-buy" style="width: 100%; padding: 8px; background-color: #2b1b40; color: white; border: none; border-radius: 20px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; flex-shrink: 0;">
                     Купить
                 </button>
             </div>
 
             <!-- Товар 3: Гетры -->
-            <div class="product-card">
-                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 10px 0; border-radius: 8px; margin-bottom: 15px; font-size: 1.1rem; width: 100%;">
+            <div class="product-card" style="border: 1px solid #e0e0e0; border-radius: 10px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center; padding: 15px; min-height: 0; height: 100%;">
+                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 8px 0; border-radius: 6px; margin-bottom: 10px; font-size: 0.95rem; width: 100%; font-weight: 600;">
                     Гетры
                 </div>
-                <div class="product-price" style="text-align: center; margin-bottom: 15px;">
+                <div class="product-price" style="text-align: center; margin-bottom: 10px; font-size: 1.1rem; font-weight: 700; color: #2b1b40;">
                     $ 20
                 </div>
-                <ul class="product-features" style="margin-top: 0; margin-bottom: 20px; padding-left: 0; list-style: none; text-align: center;">
-                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Высокая посадка до колена</li>
-                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Тёплый хлопок</li>
+                <ul class="product-features" style="margin-top: 0; margin-bottom: 12px; padding-left: 0; list-style: none; text-align: center; flex: 1;">
+                    <li style="justify-content: center; border-bottom: none; padding: 3px 0; font-size: 0.85rem;">Высокая посадка до колена</li>
+                    <li style="justify-content: center; border-bottom: none; padding: 3px 0; font-size: 0.85rem;">Тёплый хлопок</li>
                 </ul>
-                <button type="button" class="btn-buy">
+                <button type="button" class="btn-buy" style="width: 100%; padding: 8px; background-color: #2b1b40; color: white; border: none; border-radius: 20px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; flex-shrink: 0;">
                     Купить
                 </button>
             </div>
 
             <!-- Товар 4: Премиум -->
-            <div class="product-card">
-                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 10px 0; border-radius: 8px; margin-bottom: 15px; font-size: 1.1rem; width: 100%;">
+            <div class="product-card" style="border: 1px solid #e0e0e0; border-radius: 10px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center; padding: 15px; min-height: 0; height: 100%;">
+                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 8px 0; border-radius: 6px; margin-bottom: 10px; font-size: 0.95rem; width: 100%; font-weight: 600;">
                     Премиум
                 </div>
-                <div class="product-price" style="text-align: center; margin-bottom: 15px;">
+                <div class="product-price" style="text-align: center; margin-bottom: 10px; font-size: 1.1rem; font-weight: 700; color: #2b1b40;">
                     $ 25
                 </div>
-                <ul class="product-features" style="margin-top: 0; margin-bottom: 20px; padding-left: 0; list-style: none; text-align: center;">
-                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Кашемировые</li>
-                    <li style="justify-content: center; border-bottom: none; padding: 4px 0;">Без швов на пальцах</li>
+                <ul class="product-features" style="margin-top: 0; margin-bottom: 12px; padding-left: 0; list-style: none; text-align: center; flex: 1;">
+                    <li style="justify-content: center; border-bottom: none; padding: 3px 0; font-size: 0.85rem;">Кашемировые</li>
+                    <li style="justify-content: center; border-bottom: none; padding: 3px 0; font-size: 0.85rem;">Без швов на пальцах</li>
                 </ul>
-                <button type="button" class="btn-buy">
+                <button type="button" class="btn-buy" style="width: 100%; padding: 8px; background-color: #2b1b40; color: white; border: none; border-radius: 20px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; flex-shrink: 0;">
+                    Купить
+                </button>
+            </div>
+
+            <!-- Товар 5: Ажурные -->
+            <div class="product-card" style="border: 1px solid #e0e0e0; border-radius: 10px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center; padding: 15px; min-height: 0; height: 100%;">
+                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 8px 0; border-radius: 6px; margin-bottom: 10px; font-size: 0.95rem; width: 100%; font-weight: 600;">
+                    Ажурные
+                </div>
+                <div class="product-price" style="text-align: center; margin-bottom: 10px; font-size: 1.1rem; font-weight: 700; color: #2b1b40;">
+                    $ 22
+                </div>
+                <ul class="product-features" style="margin-top: 0; margin-bottom: 12px; padding-left: 0; list-style: none; text-align: center; flex: 1;">
+                    <li style="justify-content: center; border-bottom: none; padding: 3px 0; font-size: 0.85rem;">Кружевной узор</li>
+                    <li style="justify-content: center; border-bottom: none; padding: 3px 0; font-size: 0.85rem;">Хлопок 100%</li>
+                </ul>
+                <button type="button" class="btn-buy" style="width: 100%; padding: 8px; background-color: #2b1b40; color: white; border: none; border-radius: 20px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; flex-shrink: 0;">
+                    Купить
+                </button>
+            </div>
+
+            <!-- Товар 6: Тёплые -->
+            <div class="product-card" style="border: 1px solid #e0e0e0; border-radius: 10px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center; padding: 15px; min-height: 0; height: 100%;">
+                <div class="product-name" style="background: #f7f7f7; text-align: center; padding: 8px 0; border-radius: 6px; margin-bottom: 10px; font-size: 0.95rem; width: 100%; font-weight: 600;">
+                    Тёплые
+                </div>
+                <div class="product-price" style="text-align: center; margin-bottom: 10px; font-size: 1.1rem; font-weight: 700; color: #2b1b40;">
+                    $ 24
+                </div>
+                <ul class="product-features" style="margin-top: 0; margin-bottom: 12px; padding-left: 0; list-style: none; text-align: center; flex: 1;">
+                    <li style="justify-content: center; border-bottom: none; padding: 3px 0; font-size: 0.85rem;">Шерсть 80%, акрил 20%</li>
+                    <li style="justify-content: center; border-bottom: none; padding: 3px 0; font-size: 0.85rem;">Для холодной погоды</li>
+                </ul>
+                <button type="button" class="btn-buy" style="width: 100%; padding: 8px; background-color: #2b1b40; color: white; border: none; border-radius: 20px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; flex-shrink: 0;">
                     Купить
                 </button>
             </div>
