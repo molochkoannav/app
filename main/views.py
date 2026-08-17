@@ -1,6 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required  # ← ДОБАВЬТЕ ЭТУ СТРОКУ
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.urls import reverse
+import urllib.parse
+import logging
+
+logger = logging.getLogger(__name__)
 
 def index(request) -> HttpResponse:
     context = {"title": "Главная - продажа товаров", "content": "Главная"}
@@ -20,14 +26,27 @@ def orders(request):
     return render(request, 'orders.html', context)
 
 def contacts(request):
-    """Страница контактов"""
+    """Страница контактов с обработкой формы"""
+    if request.method == 'POST':
+        print("\n=== ДАННЫЕ ИЗ ФОРМЫ ===")
+        for key, value in request.POST.items():
+            if key != 'csrfmiddlewaretoken':  
+                print(f"{key}: {value}")
+        print("========================\n")
+      
+        logger.info(f"Форма контактов отправлена: {request.POST}")
+     
+        messages.success(request, 'Сообщение отправлено!')
+     
+        return redirect('contacts')
+    
     context = {
         'title': 'Контакты',
         'content': 'Свяжитесь с нами'
     }
     return render(request, 'contacts.html', context)
 
-@login_required  # 
+@login_required
 def profile(request):
     """Личный кабинет пользователя"""
     context = {
@@ -38,22 +57,80 @@ def profile(request):
 
 def register(request):
     """Регистрация пользователя"""
-    # Здесь будет логика регистрации
+    if request.method == 'POST':
+        print("\n=== РЕГИСТРАЦИЯ ===")
+        for key, value in request.POST.items():
+            if key != 'csrfmiddlewaretoken' and key != 'password2':
+                print(f"{key}: {value}")
+        print("====================\n")
+        
+        #логика регистрации
+        messages.success(request, 'Регистрация успешна!')
+        return redirect('index')
+    
     return render(request, 'register.html')
 
 def mens_socks(request):
     """Страница категории 'Носки мужские'"""
-    return render(request, 'mens_socks.html')
+    context = {
+        'title': 'Носки мужские',
+        'category': 'mens'
+    }
+    return render(request, 'mens_socks.html', context)
 
 def womens_socks(request):
     """Страница категории 'Носки женские'"""
-    return render(request, 'women_socks.html')
+    context = {
+        'title': 'Носки женские',
+        'category': 'womens'
+    }
+    return render(request, 'women_socks.html', context)
 
 def kids_socks(request):
     """Страница категории 'Носки детские'"""
-    return render(request, 'kids_socks.html')
+    context = {
+        'title': 'Носки детские',
+        'category': 'kids'
+    }
+    return render(request, 'kids_socks.html', context)
 
 def wool_socks(request):
     """Страница категории 'Носки шерстяные'"""
-    return render(request, 'wool_socks.html')
+    context = {
+        'title': 'Носки шерстяные',
+        'category': 'wool'
+    }
+    return render(request, 'wool_socks.html', context)
 
+def custom_404(request, exception):
+    """Кастомная страница 404"""
+    context = {
+        'title': '404 - Страница не найдена',
+        'content': 'Извините, запрашиваемая страница не существует.'
+    }
+    return render(request, 'non_page.html', context, status=404)
+
+
+
+def parse_form_data(post_data):
+    """
+    Функция для парсинга данных формы (аналог из socket-кода)
+    Используется для обработки сложных форм
+    """
+    parsed_data = {}
+    for key, value in post_data.items():
+        if key != 'csrfmiddlewaretoken':
+            parsed_data[key] = value
+    return parsed_data
+
+def log_form_submission(request, form_name="Форма"):
+    """
+    Утилита для логирования отправки формы
+    """
+    print(f"\n=== {form_name} ===")
+    for key, value in request.POST.items():
+        if key != 'csrfmiddlewaretoken':
+            print(f"{key}: {value}")
+    print("=" * (len(form_name) + 8) + "\n")
+    
+    logger.info(f"{form_name} отправлена: {request.POST}")
