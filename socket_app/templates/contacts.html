@@ -1,0 +1,79 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Носки и Ко</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div style="height: 100vh; display: flex; flex-direction: column; overflow: hidden; padding: 10px 20px 20px 20px; box-sizing: border-box;">
+        
+        <h1 class="page-title" style="text-align: center; margin-top: 10px; margin-bottom: 10px; font-size: 2rem; color: #2b1b40;">Контакты</h1>
+        <div class="page-subtitle" style="text-align: center; margin-bottom: 20px; font-size: 1.1rem; color: #666;">Свяжитесь с нами любым удобным способом</div>
+
+        <div class="contacts-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; flex: 1; min-height: 0; align-items: stretch;">
+            
+            <!-- Форма обратной связи (слева) -->
+            <div class="contacts-form" style="border: 1px solid #e0e0e0; border-radius: 12px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 25px; display: flex; flex-direction: column; height: 100%; box-sizing: border-box;">
+                <h2 style="margin-top: 0; margin-bottom: 20px; font-size: 1.4rem; color: #2b1b40;">Напишите нам</h2>
+                
+                <!-- Убрали {% csrf_token %} и action="#" заменили на "/contacts" -->
+                <form method="post" action="/contacts" style="display: flex; flex-direction: column; flex: 1;">
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="name" style="display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.95rem;">Ваше имя</label>
+                        <input type="text" id="name" name="name" placeholder="Иван Иванов" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; box-sizing: border-box;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="email" style="display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.95rem;">Email</label>
+                        <input type="email" id="email" name="email" placeholder="ivan@example.com" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; box-sizing: border-box;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 15px; flex: 1; display: flex; flex-direction: column; min-height: 0;">
+                        <label for="message" style="display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.95rem;">Сообщение</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Ваше сообщение..." required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; box-sizing: border-box; flex: 1; resize: none; min-height: 80px;"></textarea>
+                    </div>
+                    <button type="submit" class="btn-send" style="width: 100%; padding: 12px; background-color: #2b1b40; color: white; border: none; border-radius: 25px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s; flex-shrink: 0;">
+                        Отправить
+                    </button>
+                </form>
+                
+                <!-- Блок для отображения данных формы (добавлен) -->
+                <!-- form_data -->
+                
+            </div>
+
+            <!-- Текст с информацией (справа) -->
+            <div class="contacts-note" style="border: 1px solid #e0e0e0; border-radius: 12px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 25px; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; overflow-y: auto;">
+                <p style="margin-top: 0; font-size: 1rem; line-height: 1.2; color: #333;">
+                    Мы находимся в городе <strong>Шерстянск</strong>, по адресу: <em>ул. Носочная, д. 42</em>. Режим работы: <strong>9:00 до 18:00</strong> по будням.
+                </p>
+                <p style="font-size: 1rem; line-height: 1.2; color: #333;">
+                    <strong>Важно!</strong> Мы — не просто магазин носков, мы — <strong>хранители парных судеб</strong>. 
+                    Каждый носок в нашем ассортименте прошёл строгий отбор: мы проверяем их на <em>способность не теряться в стиральной машине</em>, 
+                    на <em>устойчивость к кошачьим когтям</em> и на <em>совместимость с любыми тапками</em>.
+                </p>
+                <p style="font-size: 1rem; line-height: 1.2; color: #333;">
+                    У нас есть носки для всех случаев жизни:
+                </p>
+                <p style="font-size: 1rem; line-height: 1.2; color: #333;">
+                    <span class="highlight" style="color: #2b1b40; font-weight: 600;">«Выходные»</span> — для ленивого воскресного утра,
+                </p>
+                <p style="font-size: 1rem; line-height: 1.2; color: #333;">
+                    <span class="highlight" style="color: #2b1b40; font-weight: 600;">«Боевые»</span> — для похода в офис,
+                </p>
+                <p style="font-size: 1rem; line-height: 1.2; color: #333;">
+                    и <span class="highlight" style="color: #2b1b40; font-weight: 600;">«Счастливые»</span> — для свиданий и экзаменов 
+                    (действуют не всегда, но мы верим!).
+                </p>
+                <p style="font-size: 1rem; line-height: 1.2; color: #333;">
+                    <em>P.S. Если вы нашли у нас один носок — не переживайте, второй обязательно отыщется. 
+                    Мы даём 100% гарантию, что он просто задержался в соседней паре.</em> 😉
+                </p>
+                <p style="margin-top: auto; padding-top: 15px; font-size: 0.95rem; color: #5e4a6e; border-top: 1px solid #f0f0f0;">
+                    ❤️ С заботой о каждой паре, команда «Носки и Ко»
+                </p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
