@@ -114,7 +114,7 @@ def custom_404(request, exception):
 
 def parse_form_data(post_data):
     """
-    Функция для парсинга данных формы (аналог из socket-кода)
+    Функция для парсинга данных формы
     Используется для обработки сложных форм
     """
     parsed_data = {}
