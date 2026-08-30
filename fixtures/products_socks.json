@@ -1,0 +1,346 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name_category": "Мужские носки",
+        "description": "Издения стратегического назначения для ношения на ногах"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name_category": "Женские носки",
+        "description": "Женские носки из высококачественного хлопка и синтетических материалов. Размеры: 36-41."
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+        "name_category": "Детские носки",
+        "description": "Детские носки из высококачественного хлопка без добавления синтетики, для самых маленьких"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+        "name_category": "Шерстяные носки",
+        "description": "Шерстяные носки из натуральной шерсти вуки и эвоков, все сырье пожертвовано ими добровольно"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 13,
+    "fields": {
+        "name_product": "Классические",
+        "description": "Парадновыходные носки, для официальных мероприятий. Хлопок 95%, эластан 5%. Размеры: 39-42, 43-46",
+        "image": "",
+        "category": 1,
+        "price": "15.00",
+        "created_at": "2026-08-30T16:57:05.102Z",
+        "updated_at": "2026-08-30T16:57:05.102Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 14,
+    "fields": {
+        "name_product": "Спортивные",
+        "description": "Обеспечивают эффективный отвод пота и влаги. Усиленная пятка и мысок. Дышащая сетка",
+        "image": "",
+        "category": 1,
+        "price": "18.00",
+        "created_at": "2026-08-30T16:57:05.113Z",
+        "updated_at": "2026-08-30T16:57:05.113Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 15,
+    "fields": {
+        "name_product": "Длинные",
+        "description": "Высокая посадка до колена. Тёплый хлопок",
+        "image": "",
+        "category": 1,
+        "price": "20.00",
+        "created_at": "2026-08-30T16:57:05.116Z",
+        "updated_at": "2026-08-30T16:57:05.116Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 16,
+    "fields": {
+        "name_product": "Премиум",
+        "description": "Мерсеризованный хлопок. Без швов на пальцах",
+        "image": "",
+        "category": 1,
+        "price": "25.00",
+        "created_at": "2026-08-30T16:57:05.120Z",
+        "updated_at": "2026-08-30T16:57:05.120Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 17,
+    "fields": {
+        "name_product": "Тёплые",
+        "description": "Шерсть 70%, акрил 30%. Для холодной погоды",
+        "image": "",
+        "category": 1,
+        "price": "22.00",
+        "created_at": "2026-08-30T16:57:05.126Z",
+        "updated_at": "2026-08-30T16:57:05.126Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 18,
+    "fields": {
+        "name_product": "Лёгкие",
+        "description": "Тонкий хлопок. Для жаркой погоды",
+        "image": "",
+        "category": 1,
+        "price": "12.00",
+        "created_at": "2026-08-30T16:57:05.130Z",
+        "updated_at": "2026-08-30T16:57:05.130Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 19,
+    "fields": {
+        "name_product": "Классические",
+        "description": "Хлопок 95%, эластан 5%. Размеры: 39-42, 43-46",
+        "image": "",
+        "category": 2,
+        "price": "15.00",
+        "created_at": "2026-08-30T16:57:05.135Z",
+        "updated_at": "2026-08-30T16:57:05.135Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 20,
+    "fields": {
+        "name_product": "Капроновые",
+        "description": "Сеточкой. Дышащая структура",
+        "image": "",
+        "category": 2,
+        "price": "18.00",
+        "created_at": "2026-08-30T16:57:05.141Z",
+        "updated_at": "2026-08-30T16:57:05.141Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 21,
+    "fields": {
+        "name_product": "Гетры",
+        "description": "Высокая посадка до колена. Тёплый хлопок",
+        "image": "",
+        "category": 2,
+        "price": "20.00",
+        "created_at": "2026-08-30T16:57:05.148Z",
+        "updated_at": "2026-08-30T16:57:05.148Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 22,
+    "fields": {
+        "name_product": "Премиум",
+        "description": "Кашемировые. Без швов на пальцах",
+        "image": "",
+        "category": 2,
+        "price": "25.00",
+        "created_at": "2026-08-30T16:57:05.154Z",
+        "updated_at": "2026-08-30T16:57:05.154Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 23,
+    "fields": {
+        "name_product": "Ажурные",
+        "description": "Кружевной узор. Хлопок 100%",
+        "image": "",
+        "category": 2,
+        "price": "22.00",
+        "created_at": "2026-08-30T16:57:05.161Z",
+        "updated_at": "2026-08-30T16:57:05.161Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 24,
+    "fields": {
+        "name_product": "Тёплые",
+        "description": "Шерсть 80%, акрил 20%. Для холодной погоды",
+        "image": "",
+        "category": 2,
+        "price": "24.00",
+        "created_at": "2026-08-30T16:57:05.166Z",
+        "updated_at": "2026-08-30T16:57:05.166Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 25,
+    "fields": {
+        "name_product": "Яркие",
+        "description": "Мультяшный принт. Хлопок 100%",
+        "image": "",
+        "category": 3,
+        "price": "8.00",
+        "created_at": "2026-08-30T16:57:05.171Z",
+        "updated_at": "2026-08-30T16:57:05.171Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 26,
+    "fields": {
+        "name_product": "Спортивные",
+        "description": "Усиленная пятка. Подойдут для бега",
+        "image": "",
+        "category": 3,
+        "price": "10.00",
+        "created_at": "2026-08-30T16:57:05.176Z",
+        "updated_at": "2026-08-30T16:57:05.176Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 27,
+    "fields": {
+        "name_product": "Тёплые",
+        "description": "Флисовая подкладка. Для зимы",
+        "image": "",
+        "category": 3,
+        "price": "12.00",
+        "created_at": "2026-08-30T16:57:05.183Z",
+        "updated_at": "2026-08-30T16:57:05.183Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 28,
+    "fields": {
+        "name_product": "Премиум",
+        "description": "Органический хлопок. Без швов",
+        "image": "",
+        "category": 3,
+        "price": "15.00",
+        "created_at": "2026-08-30T16:57:05.188Z",
+        "updated_at": "2026-08-30T16:57:05.188Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 29,
+    "fields": {
+        "name_product": "Полосатые",
+        "description": "Яркие полоски. Хлопок 95%",
+        "image": "",
+        "category": 3,
+        "price": "9.00",
+        "created_at": "2026-08-30T16:57:05.195Z",
+        "updated_at": "2026-08-30T16:57:05.195Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 30,
+    "fields": {
+        "name_product": "С рисунком",
+        "description": "Животные. Хлопок 100%",
+        "image": "",
+        "category": 3,
+        "price": "11.00",
+        "created_at": "2026-08-30T16:57:05.200Z",
+        "updated_at": "2026-08-30T16:57:05.200Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 31,
+    "fields": {
+        "name_product": "Меринос",
+        "description": "Шерсть мериноса 100%. Очень тёплые",
+        "image": "",
+        "category": 5,
+        "price": "25.00",
+        "created_at": "2026-08-30T16:57:05.204Z",
+        "updated_at": "2026-08-30T16:57:05.204Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 32,
+    "fields": {
+        "name_product": "Смесовые",
+        "description": "Шерсть + акрил. Меньше скатываются",
+        "image": "",
+        "category": 5,
+        "price": "20.00",
+        "created_at": "2026-08-30T16:57:05.213Z",
+        "updated_at": "2026-08-30T16:57:05.213Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 33,
+    "fields": {
+        "name_product": "Термо",
+        "description": "Термошерсть. Для экстремального холода",
+        "image": "",
+        "category": 5,
+        "price": "28.00",
+        "created_at": "2026-08-30T16:57:05.216Z",
+        "updated_at": "2026-08-30T16:57:05.216Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 34,
+    "fields": {
+        "name_product": "Кашемир",
+        "description": "Кашемир + шерсть. Максимальная мягкость",
+        "image": "",
+        "category": 5,
+        "price": "35.00",
+        "created_at": "2026-08-30T16:57:05.220Z",
+        "updated_at": "2026-08-30T16:57:05.220Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 35,
+    "fields": {
+        "name_product": "Альпака",
+        "description": "Шерсть альпака 100%. Гипоаллергенные",
+        "image": "",
+        "category": 5,
+        "price": "30.00",
+        "created_at": "2026-08-30T16:57:05.226Z",
+        "updated_at": "2026-08-30T16:57:05.226Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 36,
+    "fields": {
+        "name_product": "Овечья",
+        "description": "Натуральная овечья шерсть. Классические",
+        "image": "",
+        "category": 5,
+        "price": "18.00",
+        "created_at": "2026-08-30T16:57:05.230Z",
+        "updated_at": "2026-08-30T16:57:05.230Z"
+    }
+}
+]

@@ -25,8 +25,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 handler404 = 'main.views.custom_404'
 
 urlpatterns = [path('admin/', admin.site.urls),
-path("", include('main.urls')),
-path('catalog/', include('catalog.urls', namespace='catalog')),
+path('', include('main.urls')),
+path('', include('catalog.urls', namespace='catalog')),
 ]
 
 
