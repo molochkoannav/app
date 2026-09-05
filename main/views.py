@@ -4,11 +4,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 import urllib.parse
+from django.shortcuts import render
+from catalog.models import Product
+from main.models import Contact
 import logging
 
 logger = logging.getLogger(__name__)
 
 def index(request) -> HttpResponse:
+    latest_products = Product.objects.all().order_by('-created_at')[:5]
+    for product in latest_products:
+        print(f"ID: {product.id}, Название: {product.name_product}, Цена: {product.price}, Создан: {product.created_at}")
     context = {"title": "Главная - продажа товаров", "content": "Главная"}
     return render(request, 'index.html', context)
 
@@ -27,23 +33,39 @@ def orders(request):
 
 def contacts(request):
     """Страница контактов с обработкой формы"""
+    
     if request.method == 'POST':
-        print("\n=== ДАННЫЕ ИЗ ФОРМЫ ===")
-        for key, value in request.POST.items():
-            if key != 'csrfmiddlewaretoken':  
-                print(f"{key}: {value}")
-        print("========================\n")
+        name = request.POST.get('name', '').strip()
+        email = request.POST.get('email', '').strip()
+        subject = request.POST.get('subject', '').strip()
+        message_text = request.POST.get('message', '').strip()
+        
+     
+        if not name or not email or not message_text:
+            messages.error(request, 'Пожалуйста, заполните все обязательные поля')
+            return redirect('contacts')
+        
       
+        contact = Contact.objects.create(
+            name=name,
+            email=email,
+            subject=subject,
+            message=message_text
+        )
+        
+        print("\n=== ДАННЫЕ ИЗ ФОРМЫ ===")
+        print(f"Имя: {name}")
+        print(f"Email: {email}")
+        print(f"Тема: {subject}")
+        print(f"Сообщение: {message_text}")
+        print("========================\n")
+        
         logger.info(f"Форма контактов отправлена: {request.POST}")
-     
-        messages.success(request, 'Сообщение отправлено!')
-     
+        
+        messages.success(request, 'УРА! Сообщение успешно отправлено!')
         return redirect('contacts')
     
-    context = {
-        'title': 'Контакты',
-        'content': 'Свяжитесь с нами'
-    }
+    context = {}
     return render(request, 'contacts.html', context)
 
 @login_required
