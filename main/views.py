@@ -5,7 +5,8 @@ from django.contrib import messages
 from django.urls import reverse
 import urllib.parse
 from django.shortcuts import render
-from catalog.models import Product
+from app import settings
+from catalog.models import Category, Product
 from main.models import Contact
 import logging
 
@@ -94,11 +95,22 @@ def register(request):
 
 def mens_socks(request):
     """Страница категории 'Носки мужские'"""
+    try:
+        category = Category.objects.get(name_category='Мужские носки')
+        mens_socks = Product.objects.filter(category=category)
+    except Category.DoesNotExist:
+        mens_socks = Product.objects.none()
+        category = None
+    
     context = {
-        'title': 'Носки мужские',
-        'category': 'mens'
+        'products': mens_socks,
+        'category': category,
+        'products_count': mens_socks.count(),
+        'title': 'Мужские носки',
+        'MEDIA_URL': settings.MEDIA_URL, 
     }
     return render(request, 'mens_socks.html', context)
+
 
 def womens_socks(request):
     """Страница категории 'Носки женские'"""
