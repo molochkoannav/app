@@ -93,48 +93,6 @@ def register(request):
     
     return render(request, 'register.html')
 
-def mens_socks(request):
-    """Страница категории 'Носки мужские'"""
-    try:
-        category = Category.objects.get(name_category='Мужские носки')
-        mens_socks = Product.objects.filter(category=category)
-    except Category.DoesNotExist:
-        mens_socks = Product.objects.none()
-        category = None
-    
-    context = {
-        'products': mens_socks,
-        'category': category,
-        'products_count': mens_socks.count(),
-        'title': 'Мужские носки',
-        'MEDIA_URL': settings.MEDIA_URL, 
-    }
-    return render(request, 'mens_socks.html', context)
-
-
-def womens_socks(request):
-    """Страница категории 'Носки женские'"""
-    context = {
-        'title': 'Носки женские',
-        'category': 'womens'
-    }
-    return render(request, 'women_socks.html', context)
-
-def kids_socks(request):
-    """Страница категории 'Носки детские'"""
-    context = {
-        'title': 'Носки детские',
-        'category': 'kids'
-    }
-    return render(request, 'kids_socks.html', context)
-
-def wool_socks(request):
-    """Страница категории 'Носки шерстяные'"""
-    context = {
-        'title': 'Носки шерстяные',
-        'category': 'wool'
-    }
-    return render(request, 'wool_socks.html', context)
 
 def custom_404(request, exception):
     """Кастомная страница 404"""
