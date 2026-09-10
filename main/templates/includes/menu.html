@@ -1,0 +1,19 @@
+<!-- Базовое меню -->
+<li class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">
+    <a href="{% url 'index' %}">
+        <i class="bi bi-folder-symlink-fill"></i>Главная
+    </a>
+</li>
+<li class="{% if request.resolver_match.url_name == 'catalog' %}active{% endif %}">
+    <a href="{% url 'catalog:catalog' %}">
+        <i class="bi bi-box-seam"></i> Каталог товаров
+    </a>
+</li>
+<li>
+    <i class="bi bi-cart4"></i>Заказы
+</li>
+<li class="{% if request.resolver_match.url_name == 'contacts' %}active{% endif %}">
+    <a href="{% url 'contacts' %}">
+        <i class="bi bi-qr-code"></i> Контакты
+    </a>
+</li>

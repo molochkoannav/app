@@ -5,7 +5,8 @@ from django.contrib import messages
 from django.urls import reverse
 import urllib.parse
 from django.shortcuts import render
-from catalog.models import Product
+from app import settings
+from catalog.models import Category, Product
 from main.models import Contact
 import logging
 
@@ -92,37 +93,6 @@ def register(request):
     
     return render(request, 'register.html')
 
-def mens_socks(request):
-    """Страница категории 'Носки мужские'"""
-    context = {
-        'title': 'Носки мужские',
-        'category': 'mens'
-    }
-    return render(request, 'mens_socks.html', context)
-
-def womens_socks(request):
-    """Страница категории 'Носки женские'"""
-    context = {
-        'title': 'Носки женские',
-        'category': 'womens'
-    }
-    return render(request, 'women_socks.html', context)
-
-def kids_socks(request):
-    """Страница категории 'Носки детские'"""
-    context = {
-        'title': 'Носки детские',
-        'category': 'kids'
-    }
-    return render(request, 'kids_socks.html', context)
-
-def wool_socks(request):
-    """Страница категории 'Носки шерстяные'"""
-    context = {
-        'title': 'Носки шерстяные',
-        'category': 'wool'
-    }
-    return render(request, 'wool_socks.html', context)
 
 def custom_404(request, exception):
     """Кастомная страница 404"""

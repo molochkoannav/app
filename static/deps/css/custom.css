@@ -475,7 +475,7 @@ body {
     border-bottom: none;
 }
 
-.product-features li::before {
+/*.product-features li::before {
     content: "✓";
     color: #1f8b4c;
     font-weight: 600;
@@ -483,7 +483,7 @@ body {
     width: 1.2rem;
     display: inline-block;
     flex-shrink: 0;
-}
+}*/
 
 /* ===== КНОПКА КУПИТЬ ===== */
 .btn-buy {
