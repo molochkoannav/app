@@ -1,4 +1,7 @@
+from django.conf.urls.static import static
 from django.urls import path
+
+from app import settings
 from . import views
 
 app_name = 'blog'
@@ -10,3 +13,6 @@ urlpatterns = [
     path('post/<int:pk>/update/', views.BlogPostUpdateView.as_view(), name='post_update'),
     path('post/<int:pk>/delete/', views.BlogPostDeleteView.as_view(), name='post_delete'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Блог{% endblock %}
+
+{% block content %}
+    <h1 class="page-title">Блог</h1>
+    <div class="page-subtitle">Последние публикации</div>
+
+    <div class="blog-list">
+        {% for post in posts %}
+            <article class="blog-card">
+                <h2 class="blog-title">
+                    <a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a>
+                </h2>
+                <div class="blog-meta">
+                    <span class="blog-date">{{ post.created_at|date:"d.m.Y" }}</span>
+                    <span class="blog-views">
+                        <i class="bi bi-eye"></i> {{ post.views_count }}
+                    </span>
+                </div>
+                <p class="blog-excerpt">
+                    {{ post.content|truncatewords:30 }}
+                </p>
+                <a href="{% url 'blog:post_detail' post.pk %}" class="btn-read-more">Читать далее</a>
+            </article>
+        {% empty %}
+            <p class="blog-empty">Пока нет опубликованных постов.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Пагинация -->
+    {% if is_paginated %}
+        <nav class="pagination" aria-label="Навигация по страницам">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; Назад</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <span class="page-link current">{{ num }}</span>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a href="?page={{ num }}" class="page-link">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="page-link">Вперёд &raquo;</a>
+            {% endif %}
+        </nav>
+    {% endif %}
+{% endblock %}
