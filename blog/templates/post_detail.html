@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <article class="post-detail">
+        <!-- Хлебные крошки -->
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="{% url 'blog:post_list' %}">Блог</a>
+            <span class="breadcrumbs-sep">/</span>
+            <span class="breadcrumbs-current">{{ post.title }}</span>
+        </nav>
+
+        <!-- Заголовок -->
+        <h1 class="post-title">{{ post.title }}</h1>
+
+        <!-- Мета-информация -->
+        <div class="post-meta">
+            <span class="post-date">
+                <i class="bi bi-calendar3"></i> {{ post.created_at|date:"d E Y" }}
+            </span>
+            <span class="post-views">
+                <i class="bi bi-eye"></i> {{ post.views_count }}
+            </span>
+            {% if post.updated_at %}
+                <span class="post-updated">
+                    <i class="bi bi-clock-history"></i> Обновлено: {{ post.updated_at|date:"d.m.Y" }}
+                </span>
+            {% endif %}
+        </div>
+
+        <!-- Изображение -->
+        {% if post.preview_image %}
+            <div class="post-image">
+                <img src="{{ post.preview_image.url }}" 
+                     alt="{{ post.title }}" 
+                     class="post-img">
+            </div>
+        {% endif %}
+
+        <!-- Содержание -->
+        <div class="post-content">
+            {{ post.content|safe }}
+        </div>
+
+        <!-- Кнопки действий -->
+        <div class="post-actions">
+            <a href="{% url 'blog:post_list' %}" class="btn-back">
+                <i class="bi bi-arrow-left"></i> Назад к блогу
+            </a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'blog:post_update' post.pk %}" class="btn-edit">
+                    <i class="bi bi-pencil"></i> Редактировать
+                </a>
+                <a href="{% url 'blog:post_delete' post.pk %}" class="btn-delete">
+                    <i class="bi bi-trash"></i> Удалить
+                </a>
+            {% endif %}
+        </div>
+    </article>
+{% endblock %}
