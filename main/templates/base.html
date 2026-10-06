@@ -32,6 +32,7 @@
         <span></span>
     </button>
 
+
     <!-- Затемнение -->
     <div class="overlay" id="overlay"></div>
 
@@ -43,6 +44,14 @@
             {% block sidebar_menu %}
                 {% include "includes/menu.html" %}
             {% endblock %}
+
+            <!-- Кнопка перехода в блог -->
+            <li class="sidebar-blog-item">
+                <a href="{% url 'blog:post_list' %}" class="sidebar-blog-link">
+                    <i class="bi bi-journal-text"></i>
+                    Блог
+                </a>
+            </li>
         </ul>
 
         <!-- Блок пользователя с выпадающим меню -->

@@ -875,3 +875,404 @@ body {
         border-right-width: 3px;
     }
 }
+
+.blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.blog-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    border: 1px solid #eaeaea;
+}
+
+.blog-card:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.blog-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+}
+
+.blog-title a {
+    color: #1a1a2e;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.blog-title a:hover {
+    color: #4a6cf7;
+}
+
+.blog-meta {
+    display: flex;
+    gap: 1.2rem;
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 0.8rem;
+}
+
+.blog-views i {
+    margin-right: 0.25rem;
+}
+
+.blog-excerpt {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+}
+
+.btn-read-more {
+    display: inline-block;
+    padding: 0.45rem 1.2rem;
+    background: #4a6cf7;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.btn-read-more:hover {
+    background: #3b5de7;
+    color: #fff;
+}
+
+.blog-empty {
+    text-align: center;
+    color: #999;
+    font-size: 1.1rem;
+    padding: 3rem 0;
+}
+
+/* Пагинация */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 0.6rem;
+    border-radius: 8px;
+    background: #fff;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s;
+}
+
+.page-link:hover {
+    background: #f0f4ff;
+    border-color: #4a6cf7;
+    color: #4a6cf7;
+}
+
+.page-link.current {
+    background: #4a6cf7;
+    border-color: #4a6cf7;
+    color: #fff;
+    cursor: default;
+}
+
+.blog-top-link {
+    position: fixed;
+    top: 1.2rem;
+    right: 1.5rem;
+    z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.2rem;
+    background: #4a6cf7;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    box-shadow: 0 4px 14px rgba(74, 108, 247, 0.3);
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.blog-top-link:hover {
+    background: #3b5de7;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(74, 108, 247, 0.4);
+}
+
+.blog-top-link i {
+    font-size: 1.1rem;
+}
+
+/* ===== Пункт блога в боковом меню ===== */
+.sidebar-blog-item {
+    margin-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 0.5rem;
+}
+
+.sidebar-blog-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
+    color: #cfd8e3;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-blog-link:hover {
+    background: rgba(74, 108, 247, 0.15);
+    color: #4a6cf7;
+}
+
+.sidebar-blog-link i {
+    font-size: 1.1rem;
+}
+
+/* ===== Детальная страница поста ===== */
+.post-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem 0 3rem;
+}
+
+/* Хлебные крошки */
+.breadcrumbs {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 1.5rem;
+}
+
+.breadcrumbs a {
+    color: #8c4af7;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumbs a:hover {
+    color: #5834ac;
+    text-decoration: underline;
+}
+
+.breadcrumbs-sep {
+    margin: 0 0.5rem;
+    color: #ccc;
+}
+
+.breadcrumbs-current {
+    color: #424242;
+}
+
+/* Заголовок */
+.post-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #1a1a2e;
+    margin: 0 0 1rem 0;
+}
+
+/* Мета */
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    font-size: 0.9rem;
+    color: #111111;
+    margin-bottom: 1.8rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.post-meta i {
+    margin-right: 0.3rem;
+}
+
+/* Изображение */
+.post-image {
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.post-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.post-image-caption {
+    padding: 0.7rem 1rem;
+    background: #f8f9fa;
+    font-size: 0.85rem;
+    color: #777;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Содержание */
+.post-content {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #333;
+}
+
+.post-content h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 2rem 0 0.8rem;
+    padding-left: 0.8rem;
+    border-left: 4px solid #4a6cf7;
+}
+
+.post-lead {
+    font-size: 1.15rem;
+    color: #303030;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 1.5rem;
+}
+
+.post-list li {
+    position: relative;
+    padding: 0.4rem 0 0.4rem 1.8rem;
+    line-height: 1.6;
+}
+
+.post-list li::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    color: #8c4af7;
+    font-size: 0.7rem;
+    top: 0.65rem;
+}
+
+/* Цитата */
+.post-quote {
+    margin: 2rem 0;
+    padding: 1.2rem 1.5rem;
+    background: #f0f4ff;
+    border-left: 4px solid #8c4af7;
+    border-radius: 0 8px 8px 0;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #a83be7;
+}
+
+/* Кнопки действий */
+.post-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.btn-back,
+.btn-edit,
+.btn-delete {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.3rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-back {
+    background: #9b4af7;
+    color: #fff;
+}
+
+.btn-back:hover {
+    background: #b13be7;
+    color: #fff;
+}
+
+.btn-edit {
+    background: #fff;
+    color: #b84af7;
+    border: 1px solid #9b4af7;
+}
+
+.btn-edit:hover {
+    background: #f0f4ff;
+}
+
+.btn-delete {
+    background: #fff;
+    color: #f78f4a;
+    border: 1px solid #e7893c;
+}
+
+.btn-delete:hover {
+    background: #fdf0ef;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .post-title {
+        font-size: 1.6rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+
+    .post-content h2 {
+        font-size: 1.2rem;
+    }
+
+    .post-meta {
+        gap: 0.8rem;
+        font-size: 0.82rem;
+    }
+
+    .post-actions {
+        flex-direction: column;
+    }
+
+    .btn-back,
+    .btn-edit,
+    .btn-delete {
+        justify-content: center;
+    }
+}
