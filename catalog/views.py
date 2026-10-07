@@ -24,7 +24,7 @@ class ProductCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = ProductForm
     template_name = "product_form.html"
     success_url = reverse_lazy("catalog:catalog")
-    success_message = "Товар «%(name)s» создан."
+    success_message = "Товар «%(name_product)s» создан."
 
 
 class ProductUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -32,7 +32,7 @@ class ProductUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = ProductForm
     template_name = "product_form.html"
     success_url = reverse_lazy("catalog:catalog")
-    success_message = "Товар «%(name)s» обновлён."
+    success_message = "Товар «%(name_product)s» обновлён."
 
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):

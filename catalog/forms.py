@@ -2,6 +2,7 @@ from django import forms
 from .models import Product
 from django.core.validators import FileExtensionValidator
 
+MAX_IMAGE_SIZE = 5 * 1024 * 1024
 FORBIDDEN_WORDS = [
     'казино', 'криптовалюта', 'крипта', 'биржа',
     'дешево', 'бесплатно', 'обман', 'полиция', 'радар'
@@ -53,3 +54,14 @@ class ProductForm(forms.ModelForm):
         if price < 0:
             raise forms.ValidationError('Цена не может быть отрицательной')
         return price
+
+    
+
+
+    def clean_image(self):
+        image = self.cleaned_data.get("image")
+        if image and image.size > self.MAX_IMAGE_SIZE:
+            raise forms.ValidationError(
+                "Размер изображения не должен превышать 5 МБ."
+            )
+        return image
