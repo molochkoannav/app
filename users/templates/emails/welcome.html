@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добро пожаловать!</title>
+</head>
+<body style="margin: 0; padding: 0; background: #f4eef8; font-family: Arial, Helvetica, sans-serif;">
+
+    <!-- Внешний контейнер -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+           style="background: #f4eef8; padding: 40px 15px;">
+        <tr>
+            <td align="center">
+
+                <!-- Карточка письма -->
+                <table role="presentation" width="480" cellpadding="0" cellspacing="0" border="0"
+                       style="max-width: 480px; width: 100%; background: #ffffff;
+                              border-radius: 14px; border: 1px solid #e0d6e8;
+                              box-shadow: 0 2px 8px rgba(43,27,64,0.1);">
+
+                    <!-- Заголовок -->
+                    <tr>
+                        <td style="padding: 30px 30px 10px 30px; text-align: center;">
+                            <h1 style="margin: 0; color: #2b1b40; font-size: 1.5rem; font-weight: 700;">
+                                Добро пожаловать, мой носочный друг! 
+                            </h1>
+                        </td>
+                    </tr>
+
+                    <!-- Приветствие -->
+                    <tr>
+                        <td style="padding: 10px 30px 0 30px;">
+                            <p style="margin: 0 0 16px 0; color: #2b1b40; font-size: 1rem; line-height: 1.5;">
+                                Здравствуйте{% if user.username %}, <strong>{{ user.username }}</strong>{% endif %}!
+                            </p>
+                            <p style="margin: 0 0 16px 0; color: #6b5b7a; font-size: 0.95rem; line-height: 1.5;">
+                                Спасибо за регистрацию. Ваш аккаунт успешно создан — теперь вы можете
+                                пользоваться всеми возможностями сервиса.Пора обносочиться!
+                            </p>
+                            <p style="margin: 0 0 24px 0; color: #6b5b7a; font-size: 0.95rem; line-height: 1.5;">
+                                Если вы не регистрировались — просто проигнорируйте это письмо.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- Кнопка -->
+                    <tr>
+                        <td align="center" style="padding: 0 30px 30px 30px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td align="center"
+                                        style="background: #2b1b40; border-radius: 25px;">
+                                        <a href="{{ login_url|default:'#' }}"
+                                           style="display: inline-block; padding: 12px 32px;
+                                                  color: #ffffff; font-size: 0.95rem;
+                                                  font-weight: 600; text-decoration: none;
+                                                  border-radius: 25px;">
+                                            Войти в аккаунт
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Разделитель -->
+                    <tr>
+                        <td style="padding: 0 30px;">
+                            <hr style="border: none; border-top: 1px solid #e0d6e8; margin: 0;">
+                        </td>
+                    </tr>
+
+                    <!-- Подпись -->
+                    <tr>
+                        <td style="padding: 20px 30px 30px 30px; text-align: center;">
+                            <p style="margin: 0 0 8px 0; color: #6b5b7a; font-size: 0.85rem;">
+                                С уважением,<br>команда сервиса
+                            </p>
+                            <p style="margin: 0; color: #b3a8bf; font-size: 0.75rem;">
+                                Это письмо отправлено автоматически, не отвечайте на него.
+                            </p>
+                        </td>
+                    </tr>
+
+                </table>
+                <!-- /Карточка -->
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
