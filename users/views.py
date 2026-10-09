@@ -6,8 +6,9 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
 
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, ProfileEditForm
 
 
 # ============================================================
@@ -30,20 +31,35 @@ class UserLogoutView(LogoutView):
 
 
 # ============================================================
-# Профиль
+# Профиль (обрабатывает GET и POST)
 # ============================================================
 
-class ProfileView(LoginRequiredMixin, TemplateView):
+class ProfileView(LoginRequiredMixin, View):
     template_name = 'users/profile.html'
     login_url = reverse_lazy('users:login')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        user = self.request.user
-        # get_username() вернёт email или username в зависимости от USERNAME_FIELD
-        context['title'] = 'Личный кабинет'
-        context['content'] = f'Добро пожаловать, {user.get_username()}!'
-        return context
+    def get(self, request, *args, **kwargs):
+        form = ProfileEditForm(instance=request.user)
+        return render(request, self.template_name, {
+            'form': form,
+            'title': 'Личный кабинет',
+        })
+
+    def post(self, request, *args, **kwargs):
+        form = ProfileEditForm(
+            request.POST,
+            request.FILES,
+            instance=request.user
+        )
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Профиль успешно обновлён.')
+            return redirect('users:profile')
+        # если форма невалидна — рендерим ту же страницу с ошибками
+        return render(request, self.template_name, {
+            'form': form,
+            'title': 'Личный кабинет',
+        })
 
 
 # ============================================================
@@ -60,10 +76,14 @@ class RegisterView(View):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
-        form = RegisterForm(request.POST)
+        if request.user.is_authenticated:
+            return redirect('users:profile')
+
+        form = RegisterForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
-            login(request, user)          # сразу логиним после регистрации
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
+            login(request, user)
             messages.success(request, 'Регистрация прошла успешно!')
             return redirect('users:profile')
 

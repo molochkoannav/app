@@ -75,13 +75,18 @@
                             Профиль
                         </a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a href="{% url 'users:logout' %}" class="text-danger">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
-                                <path d="M15.5 8a.5.5 0 0 0-.5-.5H7.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L7.707 8.5H15a.5.5 0 0 0 .5-.5z"/>
-                            </svg>
-                            Выход
-                        </a></li>
+                        <li>
+            <form method="post" action="{% url 'users:logout' %}" style="margin: 0; padding: 0;">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn text-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                        <path d="M15.5 8a.5.5 0 0 0-.5-.5H7.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L7.707 8.5H15a.5.5 0 0 0 .5-.5z"/>
+                    </svg>
+                    Выход
+                </button>
+            </form>
+        </li>
                     </ul>
                 </div>
             {% else %}
@@ -101,6 +106,18 @@
 
     <!-- Основной контент -->
     <div class="page" id="pageContent">
+
+          {% if messages %}
+        <div class="messages-container">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
         {% block content %}
         <!-- Сюда будет вставляться содержимое конкретной страницы -->
         {% endblock %}
