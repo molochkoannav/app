@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<div style="max-width: 480px; margin: 60px auto; padding: 30px; background: #fff; border-radius: 14px; box-shadow: 0 2px 8px rgba(43,27,64,0.1); border: 1px solid #e0d6e8;">
+    <h1 style="text-align: center; color: #2b1b40; font-size: 1.5rem; margin-bottom: 20px;">Мой профиль</h1>
+
+    <!-- Сообщения -->
+    {% if messages %}
+        {% for message in messages %}
+            <div style="padding: 10px 14px; border-radius: 10px; margin-bottom: 16px; font-size: 0.9rem;
+                        background: #eaf7ee; color: #2b7a4b; border: 1px solid #b7e0c4;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Аватар -->
+    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+        {% if user.avatar_image %}
+            <img src="{{ user.avatar_image.url }}" alt="Аватар"
+                 style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #e0d6e8;">
+        {% else %}
+            <div style="width: 100px; height: 100px; border-radius: 50%; background: #f8f5fa; border: 3px solid #e0d6e8; display: flex; align-items: center; justify-content: center; color: #6b5b7a; font-size: 2rem; font-weight: 600;">
+                {{ user.email|first|upper }}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Форма редактирования -->
+    <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 16px;">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div style="color: #e74c3c; font-size: 0.85rem;">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <!-- Email (только для чтения) -->
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+            <label style="font-weight: 600; color: #2b1b40;">Email</label>
+            <input type="email" value="{{ user.email }}" disabled
+                   style="width: 100%; padding: 10px 14px; border: 2px solid #e0d6e8; border-radius: 10px; font-size: 0.95rem; background: #e8e3ec; color: #6b5b7a; box-sizing: border-box; font-family: inherit; cursor: not-allowed;">
+            <span style="font-size: 0.75rem; color: #6b5b7a;">Email нельзя изменить</span>
+        </div>
+
+        <!-- Номер телефона -->
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+            <label for="{{ form.phone_number.id_for_label }}" style="font-weight: 600; color: #2b1b40;">{{ form.phone_number.label }}</label>
+            {{ form.phone_number }}
+            {% if form.phone_number.errors %}
+                <span style="color: #e74c3c; font-size: 0.8rem;">{{ form.phone_number.errors }}</span>
+            {% endif %}
+        </div>
+
+        <!-- Страна -->
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+            <label for="{{ form.country.id_for_label }}" style="font-weight: 600; color: #2b1b40;">{{ form.country.label }}</label>
+            {{ form.country }}
+            {% if form.country.errors %}
+                <span style="color: #e74c3c; font-size: 0.8rem;">{{ form.country.errors }}</span>
+            {% endif %}
+        </div>
+
+        <!-- Аватар -->
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+            <label for="{{ form.avatar_image.id_for_label }}" style="font-weight: 600; color: #2b1b40;">{{ form.avatar_image.label }}</label>
+            {{ form.avatar_image }}
+            {% if form.avatar_image.errors %}
+                <span style="color: #e74c3c; font-size: 0.8rem;">{{ form.avatar_image.errors }}</span>
+            {% endif %}
+        </div>
+
+        <button type="submit" style="padding: 12px; background: #2b1b40; color: #fff; border: none; border-radius: 25px; font-weight: 600; cursor: pointer;">
+            Сохранить изменения
+        </button>
+
+        <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #6b5b7a; margin: 0;">
+            <a href="{% url 'password_change' %}" style="color: #2b1b40; font-weight: 600; text-decoration: none;">Сменить пароль</a>
+            <form method="post" action="{% url 'users:logout' %}" style="margin: 0; display: inline;">
+    {% csrf_token %}
+    <button type="submit"
+            style="background: none; border: none; padding: 0; color: #2b1b40; font-weight: 600; cursor: pointer; font-size: 0.9rem; font-family: inherit; text-decoration: none;">
+        Выйти
+    </button>
+</form>
+        </div>
+    </form>
+</div>
+
+<style>
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form input[type="file"] {
+        width: 100%;
+        padding: 10px 14px;
+        border: 2px solid #e0d6e8;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        background: #f8f5fa;
+        box-sizing: border-box;
+        font-family: inherit;
+    }
+    form input:focus {
+        outline: none;
+        border-color: #2b1b40;
+        box-shadow: 0 0 0 3px rgba(43, 27, 64, 0.15);
+        background: #fff;
+    }
+    form input[type="file"] {
+        padding: 8px 10px;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}

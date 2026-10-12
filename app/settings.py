@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'users.apps.UsersConfig',
 
     'main',
     'catalog',
@@ -167,8 +168,11 @@ LOGGING = {
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'noreply@myblog.local'
+EMAIL_BACKEND = os.environ.get(
+    'EMAIL_BACKEND',
+    'django.core.mail.backends.console.EmailBackend'
+)
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@myapp.local')
 
 LOGIN_URL = '/accounts/login/'           
 LOGIN_REDIRECT_URL = '/'               
@@ -176,3 +180,5 @@ LOGOUT_REDIRECT_URL = '/'
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024  
 FILE_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024
+
+AUTH_USER_MODEL = 'users.CustomUser'

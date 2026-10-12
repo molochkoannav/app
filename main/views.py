@@ -130,44 +130,6 @@ class ContactsView(View):
         return redirect('contacts')
 
 
-# ============================================================
-# 4. profile — LoginRequiredMixin + TemplateView
-# ============================================================
-
-class ProfileView(LoginRequiredMixin, TemplateView):
-    """Личный кабинет пользователя."""
-    template_name = 'profile.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Личный кабинет'
-        context['content'] = f'Добро пожаловать, {self.request.user.username}!'
-        return context
-
-
-# ============================================================
-# 5. register — View (GET + POST)
-# ============================================================
-
-class RegisterView(View):
-    """Регистрация пользователя."""
-
-    template_name = 'register.html'
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
-
-    def post(self, request, *args, **kwargs):
-        print("\n=== РЕГИСТРАЦИЯ ===")
-        for key, value in request.POST.items():
-            if key != 'csrfmiddlewaretoken' and key != 'password2':
-                print(f"{key}: {value}")
-        print("====================\n")
-
-        # TODO: логика регистрации
-        messages.success(request, 'Регистрация успешна!')
-        return redirect('index')
-
 
 # ============================================================
 # 6. custom_404 — обработчик ошибки 404
