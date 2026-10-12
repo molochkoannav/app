@@ -1,8 +1,10 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin , PermissionRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 
 from catalog.forms import ProductForm
 from catalog.models import Product
@@ -46,10 +48,12 @@ class ProductUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return response
 
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+class ProductDeleteView(PermissionRequiredMixin, DeleteView):
     model = Product
     template_name = "product_confirm_delete.html"
     success_url = reverse_lazy("catalog:catalog")
+    permission_required = 'catalog.delete_product'
+    raise_exception = True
 
     def form_valid(self, form):
         messages.success(
@@ -57,3 +61,20 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
             f"Товар «{self.object.name_product}» удалён.",
         )
         return super().form_valid(form)
+
+class ProductUnpublishView(LoginRequiredMixin, View):
+    """Снятие продукта с публикации. Только POST, только с правом."""
+
+    def post(self, request, pk):
+        if not request.user.has_perm('catalog.can_unpublish_product'):
+            raise PermissionDenied
+
+        product = get_object_or_404(Product, pk=pk)
+        if product.published:
+            product.published = False
+            product.save(update_fields=['published', 'updated_at'])
+            messages.success(request, f"Товар «{product.name_product}» снят с публикации.")
+        else:
+            messages.info(request, f"Товар «{product.name_product}» и так не опубликован.")
+
+        return redirect('catalog:catalog')
