@@ -58,18 +58,20 @@
                 Подробнее 
             </a>
 
-            {# ─── Панель действий для модераторов ─── #}
-            {% if perms.catalog.change_product or perms.catalog.delete_product or perms.catalog.can_unpublish_product %}
+            {# ─── Панель действий: владелец или модератор ─── #}
+            {% if user == product.owner or user.is_moderator %}
             <div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 10px; width: 100%;">
 
-                {% if perms.catalog.change_product %}
+                {# Редактировать — ТОЛЬКО владелец #}
+                {% if user == product.owner %}
                     <a href="{% url 'catalog:product_update' product.pk %}"
                        style="flex: 1; min-width: 90px; padding: 8px 10px; background: #f0ebf5; color: #2b1b40; border: 1px solid #2b1b40; border-radius: 20px; font-weight: 600; font-size: 0.75rem; text-align: center; text-decoration: none; letter-spacing: 0.3px;">
                         Изменить
                     </a>
                 {% endif %}
 
-                {% if perms.catalog.can_unpublish_product and product.published %}
+                {# Снять с публикации — владелец с правом can_unpublish_product #}
+                {% if user == product.owner and perms.catalog.can_unpublish_product and product.published %}
                     <form method="post" action="{% url 'catalog:product_unpublish' product.pk %}" style="flex: 1; min-width: 90px; margin: 0;">
                         {% csrf_token %}
                         <button type="submit"
@@ -79,7 +81,8 @@
                     </form>
                 {% endif %}
 
-                {% if perms.catalog.delete_product %}
+                {# Удалить — владелец ИЛИ модератор #}
+                {% if user == product.owner or user.is_moderator %}
                     <a href="{% url 'catalog:product_delete' product.pk %}"
                        style="flex: 1; min-width: 90px; padding: 8px 10px; background: #c0392b; color: #ffffff; border: 1px solid #c0392b; border-radius: 20px; font-weight: 600; font-size: 0.75rem; text-align: center; text-decoration: none; letter-spacing: 0.3px;">
                         Удалить

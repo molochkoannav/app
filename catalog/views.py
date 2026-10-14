@@ -10,6 +10,51 @@ from catalog.forms import ProductForm
 from catalog.models import Product
 
 
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.exceptions import PermissionDenied
+from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
+
+from catalog.forms import ProductForm
+from catalog.models import Product
+
+
+def is_moderator(user):
+    """Модератор — staff или участник группы 'moderators'."""
+    return user.is_authenticated and (
+        user.is_staff or user.groups.filter(name='moderators').exists()
+    )
+
+
+class OwnerOnlyMixin(LoginRequiredMixin, UserPassesTestMixin):
+    """Редактировать может только владелец."""
+
+    def test_func(self):
+        return self.get_object().owner == self.request.user
+
+    def handle_no_permission(self):
+        if self.request.user.is_authenticated:
+            raise PermissionDenied('Редактировать продукт может только его владелец.')
+        return super().handle_no_permission()
+
+
+class OwnerOrModeratorMixin(LoginRequiredMixin, UserPassesTestMixin):
+    """Удалять может владелец или модератор."""
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.owner == self.request.user or is_moderator(self.request.user)
+
+    def handle_no_permission(self):
+        if self.request.user.is_authenticated:
+            raise PermissionDenied('Удалять продукт может только владелец или модератор.')
+        return super().handle_no_permission()
+
+
+
 class CatalogView(ListView):
     model = Product
     template_name = "catalog.html"
@@ -23,6 +68,7 @@ class ProductDetailView(DetailView):
 
     def form_valid(self, form):
         messages.success(self.request, f"Товар «{self.object.name_product}» удалён.")
+
         return super().form_valid(form)
 
 
@@ -33,8 +79,12 @@ class ProductCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_url = reverse_lazy("catalog:catalog")
     success_message = "Товар «%(name_product)s» создан."
 
+def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
 
-class ProductUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+
+class ProductUpdateView(OwnerOnlyMixin, LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Product
     form_class = ProductForm
     template_name = "product_form.html"
@@ -42,13 +92,13 @@ class ProductUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 
     def form_valid(self, form):
-        old_name = self.get_object().name_product   
-        response = super().form_valid(form)       
+        form.instance.owner = self.object.owner
+        old_name = self.get_object().name_product
+        response = super().form_valid(form)
         messages.success(self.request, f"Товар «{old_name}» обновлён.")
         return response
 
-
-class ProductDeleteView(PermissionRequiredMixin, DeleteView):
+class ProductDeleteView(OwnerOrModeratorMixin, PermissionRequiredMixin, DeleteView):
     model = Product
     template_name = "product_confirm_delete.html"
     success_url = reverse_lazy("catalog:catalog")

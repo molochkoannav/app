@@ -11,8 +11,8 @@
 
     <div style="display: flex; flex-direction: column; align-items: center; background: #ffffff; border-radius: 16px; box-shadow: 0 4px 20px rgba(43, 27, 64, 0.1); padding: 30px; max-width: 600px; width: 100%; margin: 0 auto; position: relative;">
 
-        {# бейдж статуса публикации — только для тех, кто может управлять #}
-        {% if not product.published and perms.catalog.can_unpublish_product %}
+        {# бейдж статуса публикации — только владельцу или модератору #}
+        {% if not product.published and user == product.owner or not product.published and user.is_moderator %}
             <div style="position: absolute; top: 16px; right: 16px; background: #fdecea; color: #c0392b; font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px;">
                 Не опубликован
             </div>
@@ -48,18 +48,20 @@
             </span>
         </div>
 
-        {# ─── Панель действий модератора ─── #}
-        {% if perms.catalog.change_product or perms.catalog.delete_product or perms.catalog.can_unpublish_product %}
+        {# ─── Панель действий: владелец или модератор ─── #}
+        {% if user == product.owner or user.is_moderator %}
         <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; padding-top: 16px; border-top: 1px solid #eee8f0;">
 
-            {% if perms.catalog.change_product %}
+            {# Изменить — ТОЛЬКО владелец #}
+            {% if user == product.owner %}
                 <a href="{% url 'catalog:product_update' product.pk %}"
                    style="flex: 1; min-width: 120px; padding: 12px 20px; background: #f0ebf5; color: #2b1b40; border: 2px solid #2b1b40; border-radius: 25px; font-weight: 600; font-size: 0.9rem; text-align: center; text-decoration: none; letter-spacing: 0.5px;">
                     Изменить
                 </a>
             {% endif %}
 
-            {% if perms.catalog.can_unpublish_product and product.published %}
+            {# Снять с публикации — владелец с правом can_unpublish_product #}
+            {% if user == product.owner and perms.catalog.can_unpublish_product and product.published %}
                 <form method="post" action="{% url 'catalog:product_unpublish' product.pk %}" style="flex: 1; min-width: 120px; margin: 0;">
                     {% csrf_token %}
                     <button type="submit"
@@ -69,7 +71,8 @@
                 </form>
             {% endif %}
 
-            {% if perms.catalog.delete_product %}
+            {# Удалить — владелец ИЛИ модератор #}
+            {% if user == product.owner or user.is_moderator %}
                 <a href="{% url 'catalog:product_delete' product.pk %}"
                    style="flex: 1; min-width: 120px; padding: 12px 20px; background: #c0392b; color: #ffffff; border: 2px solid #c0392b; border-radius: 25px; font-weight: 600; font-size: 0.9rem; text-align: center; text-decoration: none; letter-spacing: 0.5px;">
                     Удалить
