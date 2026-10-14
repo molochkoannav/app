@@ -45,6 +45,10 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.email
 
+    @property
+    def is_moderator(self):
+        return self.is_staff or self.groups.filter(name='moderators').exists()
+
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
