@@ -4,6 +4,12 @@ from django.conf import settings
 class Category(models.Model):
     name_category = models.CharField(max_length=50, verbose_name='Наименование')
     description = models.CharField(max_length=150, verbose_name='Описание')
+    slug = models.SlugField(max_length=60, null=True, unique=True, blank=True, verbose_name='URL-код (слаг)')
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name_category)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.name_category}'
