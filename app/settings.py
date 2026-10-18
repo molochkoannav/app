@@ -182,3 +182,19 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024
 FILE_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+CACHE_ENABLED = True
+
+if CACHE_ENABLED:
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": "redis://127.0.0.1:6379/1",
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+                "CONNECTION_POOL_KWARGS": {
+                    "protocol": 2,  
+                }  # <- закрыли CONNECTION_POOL_KWARGS
+            }      # <- закрыли OPTIONS
+        }          # <- закрыли "default"
+    } 
