@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
+MODERATOR_GROUP = "Модератор продуктов"
 
 class CustomUserManager(BaseUserManager):
     """Менеджер для модели без username — логин по email."""
@@ -45,6 +46,9 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.email
 
+    @property
+    def is_moderator(user):
+        return user.is_authenticated and (user.is_staff or user.groups.filter(name=MODERATOR_GROUP).exists())
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
