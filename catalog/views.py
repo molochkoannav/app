@@ -21,11 +21,12 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from catalog.forms import ProductForm
 from catalog.models import Product
 
-
+MODERATOR_GROUP = "Модератор продуктов"
 def is_moderator(user):
     """Модератор — staff или участник группы 'moderators'."""
     return user.is_authenticated and (
-        user.is_staff or user.groups.filter(name='moderators').exists()
+        user.is_staff
+        or user.groups.filter(name=MODERATOR_GROUP).exists()
     )
 
 
@@ -45,8 +46,9 @@ class OwnerOrModeratorMixin(LoginRequiredMixin, UserPassesTestMixin):
     """Удалять может владелец или модератор."""
 
     def test_func(self):
-        obj = self.get_object()
-        return obj.owner == self.request.user or is_moderator(self.request.user)
+        product = self.get_object()
+        return (product.owner == self.request.user
+            or is_moderator(self.request.user))
 
     def handle_no_permission(self):
         if self.request.user.is_authenticated:
@@ -79,12 +81,12 @@ class ProductCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_url = reverse_lazy("catalog:catalog")
     success_message = "Товар «%(name_product)s» создан."
 
-def form_valid(self, form):
-        form.instance.owner = self.request.user
-        return super().form_valid(form)
+    def form_valid(self, form):
+            form.instance.owner = self.request.user
+            return super().form_valid(form)
 
 
-class ProductUpdateView(OwnerOnlyMixin, LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class ProductUpdateView(OwnerOnlyMixin, SuccessMessageMixin, UpdateView):
     model = Product
     form_class = ProductForm
     template_name = "product_form.html"
@@ -98,7 +100,7 @@ class ProductUpdateView(OwnerOnlyMixin, LoginRequiredMixin, SuccessMessageMixin,
         messages.success(self.request, f"Товар «{old_name}» обновлён.")
         return response
 
-class ProductDeleteView(OwnerOrModeratorMixin, PermissionRequiredMixin, DeleteView):
+class ProductDeleteView(OwnerOrModeratorMixin, DeleteView):
     model = Product
     template_name = "product_confirm_delete.html"
     success_url = reverse_lazy("catalog:catalog")

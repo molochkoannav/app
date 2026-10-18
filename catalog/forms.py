@@ -60,7 +60,7 @@ class ProductForm(forms.ModelForm):
 
     def clean_image(self):
         image = self.cleaned_data.get("image")
-        if image and image.size > self.MAX_IMAGE_SIZE:
+        if image and image.size > MAX_IMAGE_SIZE:
             raise forms.ValidationError(
                 "Размер изображения не должен превышать 5 МБ."
             )
